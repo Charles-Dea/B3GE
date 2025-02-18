@@ -6,8 +6,9 @@ class Error(Enum):
     FRAG_FAIL=2
     GLFW_INIT_FAIL=3
     GLFW_WIN_FAIL=4
+lib=ctypes.CDLL('./engine.so')
 def init():
-    lib=ctypes.CDLL('./engine.so')
+    global lib
     lib.init.restype=ctypes.c_int
     match lib.init():
         case Error.VERT_FAIL.value:
@@ -18,6 +19,6 @@ def init():
             raise Exception('failed to initialize glfw')
         case Error.GLFW_WIN_FAIL.value:
             raise Exception('failed to create window')
-    return lib
-def draw(lib):
+def draw():
+    global lib
     lib.draw()

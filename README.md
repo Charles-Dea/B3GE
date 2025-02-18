@@ -17,9 +17,9 @@ Linux:
 To use the library, simply import wrapper and call init(). You can then call draw() to re-draw the frame. See function docs for details. Refer to test.py for example code.
 
 ## Function Docs
-`engine = init()`
+`init()`
 
-Opens a window and returns an engine.
+Opens a window and runs initialization code.
 
 
 possible exceptions:
@@ -33,6 +33,6 @@ Exception - 'failed to initialize glfw'
 Exception - 'failed to create window'
 
 
-`draw(engine)`
+`draw()`
 
 Draws a frame. Returns no value. Does not raise exceptions.
