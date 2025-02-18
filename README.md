@@ -19,9 +19,20 @@ To use the library, simply import wrapper and call init(). You can then call dra
 ## Function Docs
 `engine = init()`
 
-opens a window and returns an engine
+Opens a window and returns an engine.
+
+
+possible exceptions:
+
+Exception - 'failed to compile vertex shader'
+
+Exception - 'failed to compile fragment shader'
+
+Exception - 'failed to initialize glfw'
+
+Exception - 'failed to create window'
 
 
 `draw(engine)`
 
-draws a frame
+Draws a frame. Returns no value. Does not raise exceptions.

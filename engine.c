@@ -12,20 +12,20 @@ enum{
 };
 static GLFWwindow*__restrict win;
 static uint32_t compshad(uint32_t,const char*__restrict);
-void init(){
-    if(glfwInit()<0)return;
+int init(){
+    if(glfwInit()<0)return ERR_GLFW_INIT_FAIL;
     glfwWindowHint(GLFW_RESIZABLE,0);
     win=glfwCreateWindow(600,600,"B3GE",0,0);
-    if(!win)return;
+    if(!win)return ERR_GLFW_WIN_FAIL;
     glfwMakeContextCurrent(win);
     glewExperimental=1;
     glewInit();
     uint32_t shad=glCreateProgram();
     uint32_t vert=compshad(GL_VERTEX_SHADER,"shaders/vert.glsl");
-    if(!vert)return;
+    if(!vert)return ERR_VERT_FAIL;
     glAttachShader(shad,vert);
     uint32_t frag=compshad(GL_FRAGMENT_SHADER,"shaders/frag.glsl");
-    if(!frag)return;
+    if(!frag)return ERR_FRAG_FAIL;
     glAttachShader(shad,frag);
     glLinkProgram(shad);
     glUseProgram(shad);
@@ -34,8 +34,7 @@ void init(){
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0,0,0,1);
-    //glViewport(0,0,600,600);
-    //return SUCCESS;
+    return SUCCESS;
 }
 static uint32_t compshad(uint32_t type,const char*__restrict path){
     uint32_t shad=glCreateShader(type);
@@ -53,16 +52,7 @@ static uint32_t compshad(uint32_t type,const char*__restrict path){
     glCompileShader(shad);
     int32_t cmpd;
     glGetShaderiv(shad,GL_COMPILE_STATUS,&cmpd);
-    if(!cmpd){
-        int32_t loglen;
-        glGetShaderiv(shad,GL_INFO_LOG_LENGTH,&loglen);
-        char err[loglen+1];
-        err[loglen]=0;
-        glGetShaderInfoLog(shad,loglen,&loglen,err);
-        perror(err);
-        return 0;
-    }
-    return shad;
+    return cmpd?shad:0;
 }
 void draw(){
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
