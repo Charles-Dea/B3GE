@@ -22,6 +22,6 @@ To use the library, simply import wrapper and call init(). You can then call dra
 opens a window and returns an engine
 
 
-`engine.draw()`
+`draw(engine)`
 
 draws a frame
