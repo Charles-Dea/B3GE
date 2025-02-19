@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import wrapper
-wrapper.init()
+import engine
+engine.init(800,'Test Window')
 for i in range(100):
-    wrapper.draw()
+    engine.draw()

@@ -14,12 +14,12 @@ Linux:
 `clang -fPIC -shared -o engine.so -lGL -lGLEW -lglfw engine.c`
 
 ## Usage
-To use the library, simply import wrapper and call init(). You can then call draw() to re-draw the frame. See function docs for details. Refer to test.py for example code.
+To use the library, simply import engine and call init(). You can then call draw() to re-draw the frame. See function docs for details. Refer to test.py for example code.
 
 ## Function Docs
-`init()`
+`init(window_length, window_name)`
 
-Opens a window and runs initialization code.
+Opens a square-shaped window and runs initialization code.
 
 
 possible exceptions:
