@@ -1,5 +1,7 @@
 #version 450
+layout(location=0)in vec2 tc;
+layout(binding=0)uniform sampler2D tex;
 layout(location=0)out vec4 col;
 void main(){
-    col=vec4(1,0,0,1);
+    col=texture(tex,tc).rgba;
 }
