@@ -22,19 +22,39 @@ Sprite:
 
 Fields:
 
-Name    Type    Description
+Name - Type - Description
 
-x       float   X position in NDC.
+x - float - X position in NDC.
 
-y       float   Y position in NDC.
+y - float - Y position in NDC.
 
-z       float   Z position in NDC.
+z - float - Z position in NDC.
 
-w       float   Width in NDC.
+w - float - Width in NDC.
 
-h       float   Height in NDC.
+h - float - Height in NDC.
 
-t       int     Id of a previously loaded png file. See load_texture() for details.
+t - int - Id of a previously loaded png file. See load_texture() for details.
+
+Methods:
+
+`__init__(x,y,z,w,h,t)`
+
+Arguments:
+
+Name - Type - Description
+
+x - float - Initial value for x.
+
+y - float - Initial value for y.
+
+z - float - Initial value for z.
+
+w - float - Initial value for w.
+
+h - float - Initial value for h.
+
+t - int - Initial value for t.
 
 ## Function Details
 `init(window_length, window_name)`
