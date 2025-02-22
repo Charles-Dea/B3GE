@@ -30,6 +30,8 @@ static int32_t compshad(uint32_t,const char*__restrict);
 int init(int32_t sl,const char*__restrict name){
     if(glfwInit()<0)return ERR_GLFW_INIT_FAIL;
     glfwWindowHint(GLFW_RESIZABLE,0);
+    glfwWindowHint(GLFW_VERSION_MAJOR,4);
+    glfwWindowHint(GLFW_VERSION_MINOR,1);
     uint64_t len=strlen(name)+1;
     char*__restrict n=malloc(len);
     memcpy(n,name,len);
