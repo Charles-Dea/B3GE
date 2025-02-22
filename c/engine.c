@@ -1,6 +1,10 @@
 #define GLFW_USE_WAYLAND OFF
 #define STB_IMAGE_IMPLEMENTATION
+#ifndef __APPLE__
 #include<GL/glew.h>
+#else
+#include<OpenGL/glew.h>
+#endif
 #include<GLFW/glfw3.h>
 #include<stb/stb_image.h>
 #include<stdint.h>
