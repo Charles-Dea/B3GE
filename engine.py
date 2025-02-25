@@ -42,6 +42,8 @@ def init(wl,name):
             lib=ctypes.CDLL('c/engine.so')
         case'Darwin':
             lib=ctypes.CDLL('c/engine.dylib')
+        case'Windows':
+            lib=ctypes.CDLL('c/engine')
     lib.init.argtypes=(ctypes.c_int,ctypes.c_char_p)
     lib.init.restype=ctypes.c_int
     lib.loadtex.argtypes=[ctypes.c_char_p]
