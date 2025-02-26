@@ -35,8 +35,10 @@ static int32_t compshad(uint32_t,const char*__restrict);
 int init(int32_t sl,const char*__restrict name){
     if(glfwInit()<0)return ERR_GLFW_INIT_FAIL;
     glfwWindowHint(GLFW_RESIZABLE,0);
+#ifdef __APPLE__
     glfwWindowHint(GLFW_VERSION_MAJOR,4);
     glfwWindowHint(GLFW_VERSION_MINOR,1);
+#endif
     uint64_t len=strlen(name)+1;
     char*__restrict n=malloc(len);
     memcpy(n,name,len);
@@ -90,9 +92,15 @@ int loadtex(const char*__restrict file){
     uint32_t t;
     glGenTextures(1,&t);
     glBindTexture(GL_TEXTURE_2D,t);
+#ifndef __APPLE__
+    glTextureParameteri(t,GL_TEXTURE_MAX_LEVEL,0);
+    glTextureParameteri(t,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+    glTextureParameteri(t,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+#else
     glTexParameteri(t,GL_TEXTURE_MAX_LEVEL,0);
     glTexParameteri(t,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     glTexParameteri(t,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+#endif
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,w,h,0,GL_RGBA,GL_UNSIGNED_BYTE,img);
     return t;
 }
