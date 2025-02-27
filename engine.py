@@ -1,5 +1,5 @@
 import ctypes
-from platform import system
+import platform
 from enum import Enum
 class Error(Enum):
     SUCCESS=0
@@ -37,13 +37,14 @@ class SpriteC(ctypes.Structure):
 lib=0
 def init(wl,name):
     global lib
-    match system():
+    match platform.system():
         case'Linux':
-            lib=ctypes.CDLL('c/engine.so')
+            extension='.so'
         case'Darwin':
-            lib=ctypes.CDLL('c/engine.dylib')
+            extension='.dylib'
         case'Windows':
-            lib=ctypes.CDLL('c/engine')
+            extension=''
+    lib=ctypes.CDLL('c/engine.'+platform.machine()+extension)
     lib.init.argtypes=(ctypes.c_int,ctypes.c_char_p)
     lib.init.restype=ctypes.c_int
     lib.loadtex.argtypes=[ctypes.c_char_p]

@@ -3,10 +3,11 @@
 #ifndef __APPLE__
 #include<GL/glew.h>
 #else
-#include<OpenGL/glew.h>
+#define GL_SILENCE_DEPRECATION
+#include<OpenGL/gl3.h>
 #endif
 #include<GLFW/glfw3.h>
-#include<stb/stb_image.h>
+#include"stb_image.h"
 #include<stdint.h>
 #include<stdio.h>
 #include<string.h>
@@ -42,8 +43,10 @@ int init(int32_t sl,const char*__restrict name){
     win=glfwCreateWindow(sl,sl,n,0,0);
     if(!win)return ERR_GLFW_WIN_FAIL;
     glfwMakeContextCurrent(win);
+#ifndef __APPLE__
     glewExperimental=1;
     glewInit();
+#endif
     uint32_t shad=glCreateProgram();
     int32_t vert=compshad(GL_VERTEX_SHADER,"shaders/vert.glsl");
     if(vert==ERR_FILE_NOT_FOUND)return ERR_VERT_NOT_FOUND;
@@ -87,9 +90,9 @@ int loadtex(const char*__restrict file){
     uint32_t t;
     glGenTextures(1,&t);
     glBindTexture(GL_TEXTURE_2D,t);
-    glTextureParameteri(t,GL_TEXTURE_MAX_LEVEL,0);
-    glTextureParameteri(t,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-    glTextureParameteri(t,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(t,GL_TEXTURE_MAX_LEVEL,0);
+    glTexParameteri(t,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+    glTexParameteri(t,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,w,h,0,GL_RGBA,GL_UNSIGNED_BYTE,img);
     return t;
 }
