@@ -6,9 +6,13 @@ GLEW
 GLFW
 
 ## Compiling
-Linux:
+Linux x86_64:
 
-`clang -fPIC -shared -o engine.so -lGL -lGLEW -lglfw engine.c`
+`clang -fPIC -shared -o c/engine.x86_64.so -lGL -lGLEW -lglfw c/engine.c`
+
+macOS x86_64:
+
+`clang -fPIC -shared -o engine.x86_64.dylib -framework OpenGL -lglfw engine.c`
 
 ## Usage
 To use the library, simply import engine and call init(). Call load_texture() for each .png file you would like to use for drawing. You can then call draw() to re-draw the frame. See function docs for details. Refer to test.py for example code.
