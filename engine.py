@@ -79,8 +79,10 @@ def load_texture(file):
     return tex
 def draw(s):
     global lib
-    ns=len(s)
-    sprites=(SpriteC*ns)()
-    for i,sprt in enumerate(s):
+    ns=s.copy()
+    ns.sort(key=lambda x:x.z,reverse=True)
+    ls=len(ns)
+    sprites=(SpriteC*ls)()
+    for i,sprt in enumerate(ns):
         sprites[i]=SpriteC(x=sprt.x,y=sprt.y,z=sprt.z,w=sprt.w,h=sprt.h,t=sprt.t)
-    lib.draw(sprites,ns)
+    lib.draw(sprites,ls)
