@@ -28,6 +28,7 @@ typedef struct{
     double x,y,z;
     double w,h;
     int t;
+    double r;
 }sprite_t;
 static GLFWwindow*__restrict win;
 static bool initialized;
@@ -108,6 +109,8 @@ void draw(const sprite_t*__restrict sprites,int nsprites){
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     for(int i=0;i<nsprites;i++){
         glBindTexture(GL_TEXTURE_2D,sprites[i].t);
+        glUniform1f(0,sprites[i].r);
+        glUniform2f(1,sprites[i].x,sprites[i].y);
         uint32_t vbo;
         glGenBuffers(1,&vbo);
         glBindBuffer(GL_ARRAY_BUFFER,vbo);

@@ -18,13 +18,15 @@ class Sprite:
     w=0.0
     h=0.0
     t=0
-    def __init__(self,x,y,z,w,h,t):
+    r=0
+    def __init__(self,x,y,z,w,h,t,r):
         self.x=x
         self.y=y
         self.z=z
         self.w=w
         self.h=h
         self.t=t
+        self.r=r
 class SpriteC(ctypes.Structure):
     _fields_=[
             ('x',ctypes.c_double),
@@ -32,7 +34,8 @@ class SpriteC(ctypes.Structure):
             ('z',ctypes.c_double),
             ('w',ctypes.c_double),
             ('h',ctypes.c_double),
-            ('t',ctypes.c_int)
+            ('t',ctypes.c_int),
+            ('r',ctypes.c_double)
             ]
 lib=0
 def init(wl,name):
@@ -84,5 +87,5 @@ def draw(s):
     ls=len(ns)
     sprites=(SpriteC*ls)()
     for i,sprt in enumerate(ns):
-        sprites[i]=SpriteC(x=sprt.x,y=sprt.y,z=sprt.z,w=sprt.w,h=sprt.h,t=sprt.t)
+        sprites[i]=SpriteC(x=sprt.x,y=sprt.y,z=sprt.z,w=sprt.w,h=sprt.h,t=sprt.t,r=sprt.r)
     lib.draw(sprites,ls)

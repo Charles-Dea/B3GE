@@ -36,9 +36,11 @@ h - float - Height in NDC.
 
 t - int - Id of a previously loaded png file. See load_texture() for details.
 
+r - float - Rotation of the sprite in radians.
+
 Methods:
 
-`__init__(x,y,z,w,h,t)`
+`__init__(x,y,z,w,h,t,r)`
 
 Arguments:
 
@@ -55,6 +57,8 @@ w - float - Initial value for w.
 h - float - Initial value for h.
 
 t - int - Initial value for t.
+
+r - float - Initial value for r.
 
 ## Function Details
 `init(window_length, window_name)`
