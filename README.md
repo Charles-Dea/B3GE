@@ -36,7 +36,7 @@ h - float - Height in NDC.
 
 t - int - Id of a previously loaded png file. See load_texture() for details.
 
-r - float - Rotation of the sprite in radians.
+r - float - Counterclockwise rotation of the sprite in radians.
 
 Methods:
 
